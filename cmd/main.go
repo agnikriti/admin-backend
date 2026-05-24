@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 	"time"
 
 	"agnikriti_admin_backend/config"
@@ -73,12 +74,19 @@ func main() {
 
 	internet_services.RegisterRoutes(router)
 
-	log.Printf(
-		"Server running on http://localhost:%s",
-		config.AppConfig.PORT,
-	)
+	port := os.Getenv("PORT")
 
-	err = router.Run(":" + config.AppConfig.PORT)
+	if port == "" {
+		port = config.AppConfig.PORT
+	}
+
+	if port == "" {
+		port = "8080"
+	}
+
+	log.Printf("Server running on port %s", port)
+
+	err = router.Run(":" + port)
 
 	if err != nil {
 		log.Fatal("Failed to start server:", err)
