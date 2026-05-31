@@ -35,6 +35,7 @@ func (s *ProposalService) CreateProposal(
 		Description: request.Description,
 		Email:       request.Email,
 		Mobile:      request.Mobile,
+		Quote:       request.Quote,
 	}
 
 	err := s.Repo.SaveProposal(ctx, proposal)
@@ -48,6 +49,7 @@ func (s *ProposalService) CreateProposal(
 		proposal.Description,
 		proposal.Email,
 		proposal.Mobile,
+		proposal.Quote,
 	)
 
 	if err != nil {
