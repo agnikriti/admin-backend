@@ -2,11 +2,10 @@ package utils
 
 import (
 	"fmt"
-	"strconv"
 
 	"agnikriti_admin_backend/config"
 
-	"gopkg.in/gomail.v2"
+	"github.com/resend/resend-go/v3"
 )
 
 func SendProposalEmail(
@@ -17,35 +16,7 @@ func SendProposalEmail(
 	quote int32,
 ) error {
 
-	port, err := strconv.Atoi(config.AppConfig.SMTPPort)
-
-	if err != nil {
-		return err
-	}
-
-	mailer := gomail.NewDialer(
-		config.AppConfig.SMTPHost,
-		port,
-		config.AppConfig.SMTPEmail,
-		config.AppConfig.SMTPPassword,
-	)
-
-	message := gomail.NewMessage()
-
-	message.SetHeader(
-		"From",
-		config.AppConfig.SMTPEmail,
-	)
-
-	message.SetHeader(
-		"To",
-		config.AppConfig.SMTPEmail,
-	)
-
-	message.SetHeader(
-		"Subject",
-		fmt.Sprintf("New Proposal: %s", title),
-	)
+	client := resend.NewClient(config.AppConfig.ResendAPIKey)
 
 	quoteRow := ""
 	if quote > 0 {
@@ -111,9 +82,13 @@ func SendProposalEmail(
 		title, description, email, mobile, quoteRow,
 	)
 
-	message.SetBody("text/html", body)
+	params := &resend.SendEmailRequest{
+		From:    fmt.Sprintf("Agnikriti Solutions <%s>", config.AppConfig.SMTPEmail),
+		To:      []string{config.AppConfig.SMTPEmail},
+		Subject: fmt.Sprintf("New Proposal: %s", title),
+		Html:    body,
+	}
 
-	err = mailer.DialAndSend(message)
-
+	_, err := client.Emails.Send(params)
 	return err
 }
