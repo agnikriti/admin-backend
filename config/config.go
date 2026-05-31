@@ -7,12 +7,10 @@ import (
 )
 
 type Config struct {
-	PORT         string
-	DATABASEURL  string
-	SMTPHost     string
-	SMTPPort     string
-	SMTPEmail    string
-	SMTPPassword string
+	PORT          string
+	DATABASEURL   string
+	SMTPEmail     string
+	ResendAPIKey  string
 }
 
 var AppConfig Config
@@ -23,9 +21,7 @@ func LoadConfig() {
 	AppConfig = Config{
 		PORT:         os.Getenv("PORT"),
 		DATABASEURL:  os.Getenv("DATABASE_URL"),
-		SMTPHost:     os.Getenv("SMTP_HOST"),
-		SMTPPort:     os.Getenv("SMTP_PORT"),
 		SMTPEmail:    os.Getenv("SMTP_EMAIL"),
-		SMTPPassword: os.Getenv("SMTP_PASSWORD"),
+		ResendAPIKey: os.Getenv("RESEND_API_KEY"),
 	}
 }
