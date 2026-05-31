@@ -37,10 +37,10 @@ func main() {
 	router.Use(cors.New(cors.Config{
 		AllowOrigins: []string{
 			"http://localhost:3000",
-			"https://agnikriti.com",
-			"https://ak-landing-page-chinmaykarmokars-projects.vercel.app/",
-			"https://ak-landing-page-git-main-chinmaykarmokars-projects.vercel.app/",
-			"https://ak-landing-page-8aoeeqgfh-chinmaykarmokars-projects.vercel.app/",
+			"https://www.agnikriti.com",
+			"https://www.ak-landing-page-chinmaykarmokars-projects.vercel.app/",
+			"https://www.ak-landing-page-git-main-chinmaykarmokars-projects.vercel.app/",
+			"https://www.ak-landing-page-8aoeeqgfh-chinmaykarmokars-projects.vercel.app/",
 		},
 
 		AllowMethods: []string{
