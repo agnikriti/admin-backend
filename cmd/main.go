@@ -38,6 +38,8 @@ func main() {
 		AllowOrigins: []string{
 			"http://localhost:3000",
 			"https://agnikriti.com",
+			"https://ak-landing-page-git-main-chinmaykarmokars-projects.vercel.app/",
+			"https://ak-landing-page-8aoeeqgfh-chinmaykarmokars-projects.vercel.app/",
 		},
 
 		AllowMethods: []string{
