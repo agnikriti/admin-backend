@@ -5,4 +5,5 @@ type Proposal struct {
 	Description string
 	Email       string
 	Mobile      string
+	Quote       int32
 }

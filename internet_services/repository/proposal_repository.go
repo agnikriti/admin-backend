@@ -30,9 +30,10 @@ func (r *ProposalRepository) SaveProposal(
 			title,
 			description,
 			email,
-			mobile
+			mobile,
+			quote
 		)
-		VALUES ($1, $2, $3, $4)
+		VALUES ($1, $2, $3, $4, $5)
 	`
 
 	_, err := r.DB.Exec(
@@ -42,6 +43,7 @@ func (r *ProposalRepository) SaveProposal(
 		proposal.Description,
 		proposal.Email,
 		proposal.Mobile,
+		proposal.Quote,
 	)
 
 	return err
